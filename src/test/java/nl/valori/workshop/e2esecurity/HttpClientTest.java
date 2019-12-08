@@ -1,17 +1,30 @@
 package nl.valori.workshop.e2esecurity;
 
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class HttpClientTest {
 
-  private static final Logger LOG = LoggerFactory.getLogger(HttpClientTest.class);
-  private static final String API_URL = "http://api.icndb.com/jokes/random?limitTo=[explicit,nerdy]"; // Chuck Norris jokes
+  private static final String URL_HTTP = "http://valori.example.com:80/";
+  private static final String URL_HTTPS = "https://valori.example.com:443/";
+  private static final String URL_HTTPS2 = "https://valori.example.com:2443/";
 
   @Test
   void connectHttpClient() {
-    var jokeJson = HttpClient.fetchData(API_URL);
-    LOG.debug(jokeJson);
+    final var dataFromServer = HttpClient.getDataFromServer(URL_HTTP);
+    assertEquals("Hello there", dataFromServer);
+  }
+
+  @Test
+  void connectHttpsClient() {
+    final var dataFromServer = HttpClient.getDataFromServer(URL_HTTPS);
+    assertEquals("Hello there", dataFromServer);
+  }
+
+  @Test
+  void connectHttps2Client() {
+    final var dataFromServer = HttpClient.getDataFromServer(URL_HTTPS2);
+    assertEquals("Hello there", dataFromServer);
   }
 }

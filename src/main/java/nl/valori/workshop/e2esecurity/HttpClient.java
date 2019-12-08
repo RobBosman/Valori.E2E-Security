@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 public class HttpClient {
 
-  static String fetchData(final String url) {
+  static String getDataFromServer(final String url) {
     try {
       final HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
       try {
