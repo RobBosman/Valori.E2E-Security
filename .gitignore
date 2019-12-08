@@ -2,3 +2,4 @@
 /e2e-security.iml
 /target/
 /src/main/resources/*.jks
+/src/main/resources/*.p12
