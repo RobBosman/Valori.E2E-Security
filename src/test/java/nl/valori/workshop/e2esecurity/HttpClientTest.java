@@ -17,7 +17,7 @@ class HttpClientTest {
     System.setProperty("javax.net.ssl.trustStorePassword", "TruststorePassword");
     System.setProperty("javax.net.ssl.trustStoreType", "JKS");
 
-    System.setProperty("javax.net.ssl.keyStore", getClass().getResource("/keystore.p12").getPath());
+    System.setProperty("javax.net.ssl.keyStore", getClass().getResource("/private/keystore.p12").getPath());
     System.setProperty("javax.net.ssl.keyStorePassword", "KeystorePassword");
     System.setProperty("javax.net.ssl.keyStoreType", "PKCS12");
   }
