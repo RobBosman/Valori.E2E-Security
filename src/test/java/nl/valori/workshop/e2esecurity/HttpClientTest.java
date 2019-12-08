@@ -13,7 +13,7 @@ class HttpClientTest {
 
   @BeforeEach
   void setUp() {
-    System.setProperty("javax.net.ssl.trustStore", getClass().getResource("/truststore.jks").getPath());
+    System.setProperty("javax.net.ssl.trustStore", getClass().getResource("/private/truststore.jks").getPath());
     System.setProperty("javax.net.ssl.trustStorePassword", "TruststorePassword");
     System.setProperty("javax.net.ssl.trustStoreType", "JKS");
 
