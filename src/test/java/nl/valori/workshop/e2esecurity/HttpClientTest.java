@@ -3,7 +3,7 @@ package nl.valori.workshop.e2esecurity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class HttpClientTest {
 
@@ -13,30 +13,32 @@ class HttpClientTest {
 
   @BeforeEach
   void setUp() {
-    System.setProperty("javax.net.ssl.trustStore", getClass().getResource("/private/truststore.jks").getPath());
-    System.setProperty("javax.net.ssl.trustStorePassword", "TruststorePassword");
+    final String userDir = System.getProperty("user.dir");
+
+    System.setProperty("javax.net.ssl.trustStore", userDir + "/private/truststore.jks");
+    System.setProperty("javax.net.ssl.trustStorePassword", "TrustStorePassword");
     System.setProperty("javax.net.ssl.trustStoreType", "JKS");
 
-    System.setProperty("javax.net.ssl.keyStore", getClass().getResource("/private/keystore.p12").getPath());
-    System.setProperty("javax.net.ssl.keyStorePassword", "KeystorePassword");
+    System.setProperty("javax.net.ssl.keyStore", userDir + "/private/keystore.p12");
+    System.setProperty("javax.net.ssl.keyStorePassword", "KeyStorePassword");
     System.setProperty("javax.net.ssl.keyStoreType", "PKCS12");
   }
 
   @Test
   void connectHttpClient() {
     final var dataFromServer = HttpClient.getDataFromServer(URL_HTTP);
-    assertEquals("Hello there", dataFromServer);
+    assertTrue(dataFromServer.contains("Hello there!"));
   }
 
   @Test
   void connectHttpsClient() {
     final var dataFromServer = HttpClient.getDataFromServer(URL_HTTPS);
-    assertEquals("Hello there", dataFromServer);
+    assertTrue(dataFromServer.contains("Hello there!"));
   }
 
   @Test
   void connectHttps2Client() {
     final var dataFromServer = HttpClient.getDataFromServer(URL_HTTPS2);
-    assertEquals("Hello there", dataFromServer);
+    assertTrue(dataFromServer.contains("Hello there!"));
   }
 }
