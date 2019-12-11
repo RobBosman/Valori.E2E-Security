@@ -2,7 +2,7 @@ package nl.valori.workshop.e2esecurity;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class HttpClientTest {
 
@@ -13,18 +13,18 @@ class HttpClientTest {
   @Test
   void connectHttpClient() {
     final var dataFromServer = HttpClient.getDataFromServer(URL_HTTP);
-    assertEquals("Hello there", dataFromServer);
+    assertTrue(dataFromServer.contains("Hello there!"));
   }
 
   @Test
   void connectHttpsClient() {
     final var dataFromServer = HttpClient.getDataFromServer(URL_HTTPS);
-    assertEquals("Hello there", dataFromServer);
+    assertTrue(dataFromServer.contains("Hello there!"));
   }
 
   @Test
   void connectHttps2Client() {
     final var dataFromServer = HttpClient.getDataFromServer(URL_HTTPS2);
-    assertEquals("Hello there", dataFromServer);
+    assertTrue(dataFromServer.contains("Hello there!"));
   }
 }
