@@ -2,7 +2,7 @@
 
 This repo contains Java code to demonstrate:
 * key features of secure data transport (TLS, certificates)
-* connecting to secured servers via HTTPS with one- and two-sided TLS
+* connecting to secured servers via HTTPS with one and two way TLS
 
 [Here](https://slides.com/robbosman/e2e-security/) is the presentation that goes along with the code.
 
@@ -28,9 +28,11 @@ This repo contains Java code to demonstrate:
 >This won't work because the server certificate is not valid!
 
 ### 3. install the CA root certificate
->Copy the root certificate listed on [http://valori.example.com/rootCA.crt](http://valori.example.com/ca) and store it in a file called `rootCA.crt`.\
+>Copy the root certificate listed on [http://valori.example.com/rootCA.crt](http://valori.example.com/ca)
+>and store it in a file called `rootCA.crt`.\
 >Double-click this file to open a dialog with an _Install Certificate..._ button
->and install the certificate in the trust store of your **_Local Computer_** under "_Trusted Root Certificate Authorities_" ("_Vertrouwde basiscertificeringsinstanties_"").
+>and install the certificate in the trust store of your **_Local Computer_**
+>under "_Trusted Root Certificate Authorities_" ("_Vertrouwde basiscertificeringsinstanties_"").
 
 ### 4. browse to https://valori.example.com/
  Check if the server certificate is valid.
