@@ -1,7 +1,7 @@
 @echo off
 
 SET KEYTOOL=%JAVA_HOME%\bin\keytool
-SET SUBDIR=certs
+SET SUBDIR=..\secret
 SET TRUSTSTORE=%SUBDIR%\truststore.jks
 SET NAME=%~1
 SET KEYSTORE=%SUBDIR%\keystore.p12

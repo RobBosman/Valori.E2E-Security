@@ -1,25 +1,20 @@
 @echo off
 
 SET KEYTOOL=%JAVA_HOME%\bin\keytool
-SET SUBDIR=certs
+SET SUBDIR=..\secret
 SET TRUSTSTORE=%SUBDIR%\truststore.jks
-SET CA_NAME=%~1
-SET CA_CERT_NAME=%SUBDIR%\%CA_NAME%.crt
+SET TRUSTSTORE_PASSWORD=TrustStorePassword
+SET CA_NAME=___DO_NOT_TRUST___Valori_workshop_CA
+SET CA_CERT_NAME=%SUBDIR%\rootCA.crt
 
 IF NOT EXIST "%SUBDIR%" (
   MKDIR %SUBDIR%
 )
 
-IF "%~1"=="" (
-  ECHO "Usage: %~n0 <name>
-  ECHO "    <name>  - imports the certificate in file '<name>.crt' into '%SUBDIR%\truststore.jks'
-  ECHO.
-  EXIT
-)
-
 :: import CA root certificate into truststore
 "%KEYTOOL%"^
     -keystore %TRUSTSTORE%^
+    -storepass %TRUSTSTORE_PASSWORD%^
     -storetype JKS^
     -importcert^
     -alias %CA_NAME%^
