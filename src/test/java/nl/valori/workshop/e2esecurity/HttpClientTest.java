@@ -1,7 +1,10 @@
 package nl.valori.workshop.e2esecurity;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -10,16 +13,15 @@ class HttpClientTest {
   private static final String URL_HTTP = "http://valori.example.com:80/";
   private static final String URL_HTTPS = "https://valori.example.com:443/";
   private static final String URL_HTTPS2 = "https://valori.example.com:2443/";
+  private static final Path SECRET_DIR = Paths.get(System.getProperty("user.dir"), "secret");
 
-  @BeforeEach
-  void setUp() {
-    final String userDir = System.getProperty("user.dir");
-
-    System.setProperty("javax.net.ssl.trustStore", userDir + "/private/truststore.jks");
+  @BeforeAll
+  static void setUp() {
+    System.setProperty("javax.net.ssl.trustStore", SECRET_DIR.resolve("truststore.jks").toString());
     System.setProperty("javax.net.ssl.trustStorePassword", "TrustStorePassword");
     System.setProperty("javax.net.ssl.trustStoreType", "JKS");
 
-    System.setProperty("javax.net.ssl.keyStore", userDir + "/private/keystore.p12");
+    System.setProperty("javax.net.ssl.keyStore", SECRET_DIR.resolve("keystore.p12").toString());
     System.setProperty("javax.net.ssl.keyStorePassword", "KeyStorePassword");
     System.setProperty("javax.net.ssl.keyStoreType", "PKCS12");
   }

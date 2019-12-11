@@ -1,4 +1,5 @@
 /.idea/
 /e2e-security.iml
 /target/
-/private/*.*
+/secret/*.*
+/cmd/certs/

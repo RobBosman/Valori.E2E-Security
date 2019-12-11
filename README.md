@@ -30,7 +30,7 @@ This is what I did to set-up the development environment:
 > This won't work because the server certificate is not valid.
 
 ### 3. import the CA root certificate
-> Copy the root certificate listed on [http://valori.example.com/ca](http://valori.example.com/ca) and store it in a file with extension `.crt`.\
+> Copy the root certificate listed on [http://valori.example.com/ca](http://valori.example.com/ca) and store it in a file called `rootCA.crt`.\
 > Double-click this file and import the certificate in the trust store of your **_Local Computer_** under "_Trusted root Certificate Authorities_" ("_Vertrouwde basiscertificeringsinstanties_"").
 
 ### 4. browse to https://valori.example.com/
@@ -40,6 +40,11 @@ This is what I did to set-up the development environment:
 > This probably won't work because you did not present a client certificate.
 
 ### 6. generate a certificate private key
+> See `cmd\generateKeyPair.cmd`.
+>
 ### 7. create a Certificate Signing Request (CSR)
+> See `cmd\createCSR.cmd`.
+
 ### 8. have the CSR signed by the Certificate Authority
+
 ### 9. install the signed certificate in your browser
