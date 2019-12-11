@@ -1,4 +1,4 @@
-package nl.valori.workshop.e2esecurity;
+package nl.valori.workshop.e2esecurity.client;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class HttpsClientTest {
+class Https2ClientTest {
 
   private static final String URL_HTTP = "http://valori.example.com:80/";
   private static final String URL_HTTPS = "https://valori.example.com:443/";
@@ -20,6 +20,10 @@ class HttpsClientTest {
     System.setProperty("javax.net.ssl.trustStore", SECRET_DIR.resolve("truststore.jks").toString());
     System.setProperty("javax.net.ssl.trustStorePassword", "TrustStorePassword");
     System.setProperty("javax.net.ssl.trustStoreType", "JKS");
+
+    System.setProperty("javax.net.ssl.keyStore", SECRET_DIR.resolve("keystore.p12").toString());
+    System.setProperty("javax.net.ssl.keyStorePassword", "KeyStorePassword");
+    System.setProperty("javax.net.ssl.keyStoreType", "PKCS12");
   }
 
   @Test

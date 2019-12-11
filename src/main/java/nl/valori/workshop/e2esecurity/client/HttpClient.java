@@ -1,4 +1,4 @@
-package nl.valori.workshop.e2esecurity;
+package nl.valori.workshop.e2esecurity.client;
 
 import java.io.BufferedReader;
 import java.io.IOException;

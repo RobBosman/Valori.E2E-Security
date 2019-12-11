@@ -1,4 +1,4 @@
-package nl.valori.workshop.e2esecurity;
+package nl.valori.workshop.e2esecurity.client;
 
 import org.junit.jupiter.api.Test;
 
