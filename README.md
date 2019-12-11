@@ -28,7 +28,7 @@ This repo contains Java code to demonstrate:
 >This won't work because the server certificate is not valid!
 
 ### 3. install the CA root certificate
->Copy the root certificate listed on [http://valori.example.com/rootCA.crt](http://valori.example.com/ca)
+>Copy the root certificate listed on [http://valori.example.com/rootCA.crt](http://valori.example.com/rootCA.crt)
 >and store it in a file called `rootCA.crt`.\
 >Double-click this file to open a dialog with an _Install Certificate..._ button
 >and install the certificate in the trust store of your **_Local Computer_**
