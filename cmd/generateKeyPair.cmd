@@ -1,28 +1,23 @@
-@echo off
+@ECHO OFF
 
-SET KEYTOOL=%JAVA_HOME%\bin\keytool
-SET SUBDIR=..\secret
-SET NAME=%~1
-SET KEYSTORE=%SUBDIR%\keystore.p12
+CALL _config.cmd %*
+IF NOT "%KEYSTORE_PASSWORD%"=="" (
+  SET KEYTOOL=%KEYTOOL% -storepass %KEYSTORE_PASSWORD%
+)
 
-IF "%~1"=="" (
+IF "%DNAME%"=="" (
   ECHO "Usage: %~n0 <name>
-  ECHO "    <name>        - generates a private+public key pair in '%KEYSTORE%'
+  ECHO "    <name>        - generates a private + public key pair in '%KEYSTORE%'
   ECHO.
-  EXIT
+) ELSE (
+  REM generate self-signed certificate and private key
+  %KEYTOOL% ^
+      -keystore "%KEYSTORE%" ^
+      -storetype PKCS12 ^
+      -genkeypair ^
+      -alias "%DNAME%" ^
+      -keyalg RSA ^
+      -keysize 2048 ^
+      -dname "CN=%DNAME%,OU=workshop,O=Valori,L=Utrecht,C=NL" ^
+      -ext "san=dns:%DNAME%,ip:127.0.0.1,ip:::1"
 )
-
-IF NOT EXIST "%SUBDIR%" (
-  MKDIR %SUBDIR%
-)
-
-:: generate self-signed certificate private key
-"%KEYTOOL%"^
-    -keystore %KEYSTORE%^
-    -storetype PKCS12^
-	-genkeypair^
-    -alias %NAME%^
-    -keyalg RSA^
-	-keysize 2048^
-    -dname "CN=%NAME%,OU=workshop,O=Valori,L=Utrecht,C=NL"^
-    -ext "san=dns:%NAME%,ip:127.0.0.1,ip:::1"

@@ -1,29 +1,23 @@
-@echo off
+@ECHO OFF
 
-SET KEYTOOL=%JAVA_HOME%\bin\keytool
-SET SUBDIR=..\secret
-SET NAME=%~1
-SET KEYSTORE=%SUBDIR%\keystore.p12
-SET CRS_NAME=%SUBDIR%\%NAME%.csr
-
-IF NOT EXIST "%SUBDIR%" (
-  MKDIR %SUBDIR%
+CALL _config.cmd %*
+IF NOT "%KEYSTORE_PASSWORD%"=="" (
+  SET KEYTOOL=%KEYTOOL% -storepass %KEYSTORE_PASSWORD%
 )
 
-IF "%~1"=="" (
+IF "%DNAME%"=="" (
   ECHO "Usage: %~n0 <name>
-  ECHO "    <name> - generates a CSR of certificate <name> in keystore %KEYSTORE%
-  ECHO "             and stores it in %SUBDIR%\<name>.csr
+  ECHO "    <name> - generates a CSR of certificate <name> in %KEYSTORE%
+  ECHO "             and stores it in %SECRET_DIR%\<name>.csr
   ECHO.
-  EXIT
+) ELSE (
+  REM create CSR for certificate
+  %KEYTOOL% ^
+      -keystore "%KEYSTORE%" ^
+      -certreq ^
+      -alias "%DNAME%" ^
+      -keyalg RSA ^
+      -keysize 2048 ^
+      -dname "CN=%DNAME%,OU=workshop,O=Valori,L=Utrecht,C=NL" ^
+      -file %CRS_FILE%
 )
-
-:: create CSR for certificate
-"%KEYTOOL%"^
-    -keystore %KEYSTORE%^
-	-certreq^
-    -alias %NAME%^
-    -keyalg RSA^
-    -keysize 2048^
-    -dname "CN=%NAME%,OU=workshop,O=Valori,L=Utrecht,C=NL"^
-    -file %CRS_NAME%

@@ -12,19 +12,19 @@ class HttpClientTest {
 
   @Test
   void connectHttpClient() {
-    final var dataFromServer = HttpClient.getDataFromServer(URL_HTTP);
+    final String dataFromServer = HttpClient.getDataFromServer(URL_HTTP);
     assertTrue(dataFromServer.contains("Hello there!"));
   }
 
   @Test
   void connectHttpsClient() {
-    final var dataFromServer = HttpClient.getDataFromServer(URL_HTTPS);
+    final String dataFromServer = HttpClient.getDataFromServer(URL_HTTPS);
     assertTrue(dataFromServer.contains("Hello there!"));
   }
 
   @Test
   void connectHttps2Client() {
-    final var dataFromServer = HttpClient.getDataFromServer(URL_HTTPS2);
+    final String dataFromServer = HttpClient.getDataFromServer(URL_HTTPS2);
     assertTrue(dataFromServer.contains("Hello there!"));
   }
 }
